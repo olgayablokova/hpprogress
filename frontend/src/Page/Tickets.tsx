@@ -1,8 +1,14 @@
 import React from "react";
+import {Column} from "react-table";
+import moment from "moment/moment";
+
 import {Table} from "../Components/Table";
 import {BackButton} from "../Components/BackButton";
 import {IItemList} from "../interface";
-import {Column} from "react-table";
+
+const formatDateToString = (date: Date) => {
+    return moment(date).format('YYYY-MM-DD HH:MM:SS.SSS')
+}
 
 const columns: Column<IItemList>[] = [
     {
@@ -12,10 +18,12 @@ const columns: Column<IItemList>[] = [
     {
         Header: "Creation time",
         accessor: "creationTime",
+        Cell: (cell: any) => <div>{formatDateToString(cell.value)}</div>,
     },
     {
         Header: "Change Time",
         accessor: "changeTime",
+        Cell: (cell: any) => <div>{formatDateToString(cell.value)}</div>,
     },
     {
         Header: "Status",
@@ -41,9 +49,9 @@ const columns: Column<IItemList>[] = [
 
 export const Tickets = ({data, connected}: { data: IItemList[], connected: boolean }) =>
     (
-        <div className="App">
+        <div className="App gap-3">
             <BackButton/>
-            {connected ? <Table columns={columns} data={data}/> : <div>Error connected</div>}
+            <div>{connected ? <Table columns={columns} data={data}/> : <div>Error connected</div>}</div>
         </div>
     );
 

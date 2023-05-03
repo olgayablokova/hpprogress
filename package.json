@@ -10,12 +10,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "nodemon": "^2.0.22",
-    "react-router-dom": "^6.11.0",
-    "react-table": "^7.8.0",
-    "ws": "^8.13.0"
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.7",
+    "ws": "^7.4.4"
   },
-  "devDependencies": {
-    "@types/react-table": "^7.7.14"
-  }
+  "devDependencies": {}
 }

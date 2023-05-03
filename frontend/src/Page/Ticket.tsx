@@ -1,7 +1,10 @@
 import React, {memo, useEffect, useState} from "react";
 import Select, {SingleValue} from "react-select";
+import moment from 'moment'
+
 import {BackButton} from "../Components/BackButton";
 import useDebounce from "../Hook/useDebounce";
+
 import {TicketPageTestIds} from "../__test__/Fixtures";
 import {IItemList} from "../interface";
 
@@ -40,7 +43,7 @@ const Ticket = ({sendMessage}: { sendMessage(ticket: IItemList): void }) => {
 
     return (
         <div className="App gap-3">
-            <span>Creat ticket</span>
+            <span className="text-light">Creat ticket</span>
             <BackButton/>
             <div className="d-flex flex-column gap-2">
                 <Select defaultValue={instrument} options={options}
