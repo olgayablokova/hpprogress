@@ -1,5 +1,5 @@
 import React from "react";
-import {Column} from "react-table";
+import {Column, Cell} from "react-table";
 import moment from "moment/moment";
 
 import {Table} from "../Components/Table";
@@ -8,6 +8,12 @@ import {IItemList} from "../interface";
 
 const formatDateToString = (date: Date) => {
     return moment(date).format('YYYY-MM-DD HH:MM:SS.SSS')
+}
+
+const UpperCase = ({value}:{value: string}) => {
+    const res = value[0].toUpperCase() + value.slice(1)
+
+    return <div>{ res}</div>
 }
 
 const columns: Column<IItemList>[] = [
@@ -28,6 +34,7 @@ const columns: Column<IItemList>[] = [
     {
         Header: "Status",
         accessor: "status",
+        Cell: ({cell}: {cell: {value: string}}) => <UpperCase value={cell.value}/>
     },
     {
         Header: "Side",

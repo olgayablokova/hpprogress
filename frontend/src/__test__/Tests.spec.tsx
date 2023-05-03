@@ -1,16 +1,19 @@
 import React from "react";
+import {MemoryRouter} from "react-router-dom";
 import {render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import WS from "jest-websocket-mock";
-import {App} from "../App";
-import {MemoryRouter} from "react-router-dom";
-import {HomePageTestIds, TicketPageTestIds} from "./Fixtures";
 import '@testing-library/jest-dom'
+
+import {App} from "../App";
+import {HomePageTestIds, TicketPageTestIds} from "./Fixtures";
 
 describe("App tickets", () => {
     let ws: WS;
+    // let client: WebSocket;
     beforeEach(() => {
         ws = new WS("ws://localhost:5003/tickets");
+        // client = new WebSocket("ws://localhost:5003/tickets")
     });
     afterEach(() => {
         WS.clean();
@@ -45,11 +48,14 @@ describe("App tickets", () => {
         expect(screen.getByTestId(TicketPageTestIds.amountInput)).toHaveValue(testValue)
 
         userEvent.click(screen.getByTestId(TicketPageTestIds.buyBtn))
+
+        // client.send(ticket);
         ws.send(ticket);
 
         userEvent.click(screen.getByTestId(HomePageTestIds.ticketsLink))
 
         expect(screen.getByText(testValue)).toBeInTheDocument()
+        ws.close()
     });
 
     it("Visible tickets list", async () => {
@@ -74,5 +80,6 @@ describe("App tickets", () => {
         userEvent.click(screen.getByTestId(HomePageTestIds.ticketsLink))
 
         expect(screen.getByText(testValue)).toBeInTheDocument()
+        ws.close()
     });
 });
