@@ -1,7 +1,4 @@
-# hpprogress 
-вакансия https://hh.ru/vacancy/72731102
 
-тестовое задание https://bitbucket.org/ntprog/webdevelopertestwork/src/master/
 
 Симулятор биржи
 Состоит из 3 страницю реестр тикетов, карточка тикета, домашняя страница
